@@ -1,6 +1,148 @@
 @import "tailwindcss";
 @source not "../../*.md";
 
+@theme {
+  --color-page: #effafa;
+  --color-cyan: #437979;
+  --color-cyan-banner: #5ca5a5;
+  --color-cyan-tablet: #eff6f6;
+  --color-ink: #2b3939;
+  --color-slate: #687a7a;
+  --color-rule: #b7c4c4;
+
+  --text-company: 1.125rem;
+  --text-company--line-height: 1.5rem;
+  --text-company-sm: 0.8125rem;
+  --text-company-sm--line-height: 1.5rem;
+  --text-title: 1.375rem;
+  --text-title--line-height: 1.5rem;
+  --text-title-sm: 0.9375rem;
+  --text-title-sm--line-height: 1.5rem;
+  --text-meta: 1.125rem;
+  --text-meta--line-height: 1.5rem;
+  --text-meta--letter-spacing: -0.0077em;
+  --text-meta-sm: 1rem;
+  --text-meta-sm--line-height: 1.5rem;
+  --text-meta-sm--letter-spacing: -0.0077em;
+  --text-tablet: 1rem;
+  --text-tablet--line-height: 1.5rem;
+  --text-tablet--letter-spacing: -0.0077em;
+  --text-badge: 0.875rem;
+  --text-badge--line-height: 0.875rem;
+  --text-badge--letter-spacing: -0.0077em;
+
+  --radius-card: 0.3125rem;
+  --shadow-card: 0 15px 20px -5px rgb(13 113 130 / 0.15);
+  --container-board: 69.375rem;
+  --breakpoint-row: 68rem;
+}
+
 @theme inline {
   --font-sans: var(--font-league-spartan);
+}
+
+@layer base {
+  html {
+    scrollbar-gutter: stable;
+  }
+
+  body {
+    @apply bg-page text-ink;
+  }
+
+  a,
+  button {
+    @apply v-focus-ring;
+  }
+
+  button:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
+
+@utility v-focus-ring {
+  &:focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 4px;
+  }
+}
+
+@utility v-board {
+  @apply mx-auto max-w-board;
+}
+
+@utility v-banner {
+  @apply bg-cyan-banner bg-top bg-no-repeat;
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='375' height='156'%3E%3Cpath fill='%2363BABA' fill-rule='evenodd' d='M-86.732 487.429c-51.432-51.425-51.438-134.806-.013-186.237l.013-.013L309.926-95.424c51.441-51.434 134.836-51.434 186.277 0C547.634-44 547.64 39.38 496.216 90.813c-.005.004-.01.008-.013.013L99.543 487.429c-51.44 51.433-134.834 51.433-186.275 0zm-444.692 71.824c-51.432-51.424-51.438-134.806-.013-186.237l.013-.013L-134.766-23.6C-83.325-75.034.07-75.034 51.511-23.6c51.431 51.424 51.437 134.805.013 186.237l-.013.013-396.66 396.603c-51.44 51.433-134.834 51.433-186.275 0z'/%3E%3C/svg%3E");
+  background-size: cover;
+
+  @variant sm {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1440' height='156'%3E%3Cpath fill='%2363BABA' fill-rule='evenodd' d='M495.73 563.419c-51.439-48.795-53.583-130.05-4.788-181.489a128.377 128.377 0 0 1 4.789-4.789l418.16-396.66c55.045-52.215 141.329-52.215 196.374 0 50.418 47.825 53.478 126.835 7.634 178.39l188.06-178.39c55.045-52.215 141.328-52.215 196.373 0 51.44 48.794 53.583 130.049 4.789 181.488a128.377 128.377 0 0 1-4.789 4.789l-418.158 396.658c-55.045 52.215-141.329 52.215-196.374 0-50.418-47.825-53.478-126.835-7.634-178.39L692.104 563.42c-55.045 52.215-141.328 52.215-196.373 0ZM360.464 45.523c-51.44-48.794-53.583-130.05-4.789-181.488a128.377 128.377 0 0 1 4.789-4.79l418.163-396.663c55.046-52.215 141.33-52.215 196.374 0 51.44 48.794 53.583 130.05 4.789 181.488a128.376 128.376 0 0 1-4.789 4.79L556.837 45.522c-55.045 52.215-141.328 52.215-196.373 0Zm-468.795 71.832c-51.439-48.795-53.583-130.05-4.789-181.489a128.377 128.377 0 0 1 4.79-4.788l418.16-396.661c55.045-52.215 141.328-52.215 196.373 0 51.44 48.794 53.583 130.05 4.79 181.488a128.378 128.378 0 0 1-4.79 4.789l-418.16 396.66c-55.045 52.216-141.329 52.216-196.374 0Z'/%3E%3C/svg%3E");
+  }
+}
+
+@utility v-surface {
+  @apply rounded-card bg-white shadow-card;
+}
+
+@utility v-tablet {
+  @apply rounded bg-cyan-tablet text-tablet font-bold text-cyan;
+}
+
+@utility v-tablet-interactive {
+  @apply inline-flex items-center;
+
+  &:hover,
+  &:focus-visible {
+    @apply bg-cyan text-white;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    @apply transition-colors;
+  }
+}
+
+@utility v-remove-button {
+  @apply bg-cyan;
+
+  &:hover,
+  &:focus-visible {
+    @apply bg-ink;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    @apply transition-colors;
+  }
+}
+
+@utility v-clear-button {
+  &:hover,
+  &:focus-visible {
+    @apply text-cyan underline underline-offset-2;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    @apply transition-colors;
+  }
+}
+
+@utility v-meta-dot {
+  @apply flex items-center gap-[9.5px] row:gap-[18.5px];
+
+  &::before {
+    @apply size-1 rounded-full bg-rule content-[''];
+  }
+}
+
+@utility v-attribution-link {
+  @apply text-cyan underline underline-offset-2;
+
+  &:hover {
+    @apply text-ink;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    @apply transition-colors;
+  }
 }
