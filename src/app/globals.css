@@ -1,0 +1,6 @@
+@import "tailwindcss";
+@source not "../../*.md";
+
+@theme inline {
+  --font-sans: var(--font-league-spartan);
+}
