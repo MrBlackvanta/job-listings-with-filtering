@@ -47,8 +47,9 @@ neither has a contrast requirement, and the deviation is held to the minimum. Th
 consequence is that on a featured card the 5px stripe and the NEW! badge are slightly different
 teals.
 
-**The muted grey darkens from `#7C8F8F` to `#687A7A`** — hue 180 and saturation 7.8% held,
-lightness 52.4% → 44.4%. It only ever sits on white, so white is the only constraint.
+**The muted grey darkens from `#7C8F8F` to `#647575`** — hue 180 and saturation 7.8% held,
+lightness 52.4% → 42.6%. Two backdrops constrain it, not one: the card meta line sits on white,
+and the attribution footer sits on the `#EFFAFA` page background, which is the tighter of the two.
 
 | | design | contrast | shipped | contrast |
 | --- | --- | --- | --- | --- |
@@ -57,7 +58,9 @@ lightness 52.4% → 44.4%. It only ever sits on white, so white is the only cons
 | NEW! badge, 14px bold | `#FFFFFF` on `#5CA5A5` | 2.85 | `#FFFFFF` on `#437979` | 4.94 |
 | Chip hover label, 16px bold | `#FFFFFF` on `#5CA5A5` | 2.85 | `#FFFFFF` on `#437979` | 4.94 |
 | Remove button icon | `#FFFFFF` on `#5CA5A5` | 2.85 | `#FFFFFF` on `#437979` | 4.94 |
-| Meta line + Clear | `#7C8F8F` on `#FFFFFF` | 3.40 | `#687A7A` on `#FFFFFF` | 4.51 |
+| Meta line + Clear, on a card | `#7C8F8F` on `#FFFFFF` | 3.40 | `#647575` on `#FFFFFF` | 4.84 |
+| Attribution footer, on the page | `#7C8F8F` on `#EFFAFA` | 3.23 | `#647575` on `#EFFAFA` | 4.54 |
+| Attribution links, on the page | n/a | n/a | `#437979` on `#EFFAFA` | 4.64 |
 | Position title, 22px bold | `#2B3939` on `#FFFFFF` | 12.02 | unchanged | 12.02 |
 | FEATURED badge, 14px bold | `#FFFFFF` on `#2B3939` | 12.02 | unchanged | 12.02 |
 
