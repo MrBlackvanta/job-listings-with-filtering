@@ -3,14 +3,15 @@ import { cn } from "@/lib";
 
 type JobCardProps = {
   job: Job;
+  eager: boolean;
   onSelectTag: (tag: Tag) => void;
 };
 
-export default function JobCard({ job, onSelectTag }: JobCardProps) {
+export default function JobCard({ job, eager, onSelectTag }: JobCardProps) {
   return (
     <article
       className={cn(
-        "v-surface relative mt-6 px-6 pt-8 pb-6 row:mt-0 row:flex row:items-center row:gap-6 row:px-10 row:py-8",
+        "v-surface relative mt-6 px-6 pt-8 pb-6 sm:mt-0 sm:flex sm:flex-wrap sm:items-center sm:gap-6 sm:px-10 sm:py-8 row:flex-nowrap row:pb-7.75",
         {
           "before:absolute before:inset-y-0 before:left-0 before:w-1.25 before:rounded-l-card before:bg-cyan-banner":
             job.isFeatured,
@@ -22,12 +23,13 @@ export default function JobCard({ job, onSelectTag }: JobCardProps) {
         alt=""
         width={88}
         height={88}
-        className="absolute -top-6 left-6 size-12 row:static row:size-22"
+        loading={eager ? "eager" : "lazy"}
+        className="absolute -top-6 left-6 size-12 sm:static sm:size-22"
       />
 
       <div>
-        <div className="flex items-center gap-7.5 row:gap-3.75">
-          <p className="text-company-sm font-bold text-cyan row:text-company">
+        <div className="flex items-center gap-7.5 sm:gap-3.75">
+          <p className="text-company-sm font-bold text-cyan sm:text-company">
             {job.company}
           </p>
           {(job.isNew || job.isFeatured) && (
@@ -38,18 +40,18 @@ export default function JobCard({ job, onSelectTag }: JobCardProps) {
           )}
         </div>
 
-        <h2 className="mt-2.5 text-title-sm font-bold row:text-title">
+        <h2 className="mt-2.5 text-title-sm font-bold sm:text-title">
           {job.position}
         </h2>
 
-        <ul className="mt-1.75 flex items-center gap-[9.5px] text-meta-sm font-medium text-slate row:gap-[18.5px] row:text-meta">
+        <ul className="mt-1.75 flex items-center gap-[9.5px] text-meta-sm font-medium text-slate sm:gap-[18.5px] sm:text-meta">
           <li>{job.postedAt}</li>
           <li className="v-meta-dot">{job.contract}</li>
           <li className="v-meta-dot">{job.location}</li>
         </ul>
       </div>
 
-      <ul className="mt-3.75 flex flex-wrap gap-4 border-t border-rule pt-4 row:mt-0 row:ml-auto row:justify-end row:border-t-0 row:pt-0">
+      <ul className="mt-3.75 flex w-full flex-wrap gap-4 border-t border-rule pt-4 sm:mt-0 row:ml-auto row:w-auto row:border-t-0 row:pt-0">
         {job.tags.map((tag) => (
           <li key={tag}>
             <button
@@ -58,7 +60,7 @@ export default function JobCard({ job, onSelectTag }: JobCardProps) {
               className="v-tablet v-tablet-interactive h-8 px-2.25"
             >
               {tag}
-              <span className="sr-only"> — add filter</span>
+              <span className="sr-only">, add filter</span>
             </button>
           </li>
         ))}

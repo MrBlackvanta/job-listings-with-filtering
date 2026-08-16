@@ -15,7 +15,7 @@ export default function FilterBar({
   return (
     <section
       aria-label="Active filters"
-      className="v-surface -mt-9 flex items-center gap-5 p-5 row:px-10"
+      className="v-surface -mt-9 flex items-center gap-5 p-5 sm:px-10"
     >
       <ul className="flex flex-wrap gap-4">
         {filters.map((tag) => (

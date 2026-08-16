@@ -43,7 +43,7 @@
 
 @layer base {
   html {
-    scrollbar-gutter: stable;
+    scrollbar-gutter: stable both-edges;
   }
 
   body {
@@ -128,10 +128,26 @@
 }
 
 @utility v-meta-dot {
-  @apply flex items-center gap-[9.5px] row:gap-[18.5px];
+  @apply flex items-center gap-[9.5px] sm:gap-[18.5px];
 
   &::before {
     @apply size-1 rounded-full bg-rule content-[''];
+  }
+}
+
+@keyframes v-reveal {
+  from {
+    transform: translateY(1.5rem);
+  }
+}
+
+@utility v-reveal {
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      animation: v-reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 80%;
+    }
   }
 }
 

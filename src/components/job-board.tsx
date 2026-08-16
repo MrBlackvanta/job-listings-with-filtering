@@ -34,23 +34,17 @@ export default function JobBoard({ jobs }: { jobs: Job[] }) {
         {matches.length} of {jobs.length} jobs match the selected filters.
       </p>
 
-      {matches.length > 0 ? (
-        <ul
-          className={cn("mt-8 flex flex-col gap-4 row:mt-19 row:gap-6", {
-            "row:mt-10": filters.length > 0,
-          })}
-        >
-          {matches.map((job) => (
-            <li key={job.id}>
-              <JobCard job={job} onSelectTag={addFilter} />
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p className="v-surface mt-8 px-6 py-10 text-center text-title-sm font-bold row:mt-10 row:text-title">
-          No jobs match these filters.
-        </p>
-      )}
+      <ul
+        className={cn("mt-8 flex flex-col gap-4 sm:mt-14 sm:gap-6 row:mt-19", {
+          "row:mt-10": filters.length > 0,
+        })}
+      >
+        {matches.map((job, index) => (
+          <li key={job.id} className="v-reveal">
+            <JobCard job={job} eager={index === 0} onSelectTag={addFilter} />
+          </li>
+        ))}
+      </ul>
     </>
   );
 }
