@@ -5,7 +5,7 @@ import { jobs } from "@/data/jobs";
 export default function Home() {
   return (
     <>
-      <header className="v-banner h-39">
+      <header className="h-39 v-banner">
         <h1 className="sr-only">Job listings</h1>
       </header>
 

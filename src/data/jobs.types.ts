@@ -2,7 +2,13 @@ import type { StaticImageData } from "next/image";
 
 export const ROLES = ["Frontend", "Backend", "Fullstack"] as const;
 export const LEVELS = ["Junior", "Midweight", "Senior"] as const;
-export const LANGUAGES = ["Python", "Ruby", "JavaScript", "HTML", "CSS"] as const;
+export const LANGUAGES = [
+  "Python",
+  "Ruby",
+  "JavaScript",
+  "HTML",
+  "CSS",
+] as const;
 export const TOOLS = ["React", "Sass", "Vue", "Django", "RoR"] as const;
 
 export type Role = (typeof ROLES)[number];

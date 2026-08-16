@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import FilterBar from "@/components/filter-bar";
 import JobCard from "@/components/job-card";
@@ -9,6 +9,7 @@ import { cn } from "@/lib";
 
 export default function JobBoard({ jobs }: { jobs: Job[] }) {
   const [filters, setFilters] = useState<Tag[]>([]);
+  const results = useRef<HTMLUListElement>(null);
 
   const addFilter = (tag: Tag) =>
     setFilters((active) => (active.includes(tag) ? active : [...active, tag]));
@@ -25,16 +26,20 @@ export default function JobBoard({ jobs }: { jobs: Job[] }) {
       {filters.length > 0 && (
         <FilterBar
           filters={filters}
+          results={results}
           onRemove={removeFilter}
           onClear={() => setFilters([])}
         />
       )}
 
       <p aria-live="polite" className="sr-only">
-        {matches.length} of {jobs.length} jobs match the selected filters.
+        {filters.length === 0
+          ? `Showing all ${jobs.length} jobs.`
+          : `${matches.length} of ${jobs.length} jobs match ${filters.join(", ")}.`}
       </p>
 
       <ul
+        ref={results}
         className={cn("mt-8 flex flex-col gap-4 sm:mt-14 sm:gap-6 row:mt-19", {
           "row:mt-10": filters.length > 0,
         })}
