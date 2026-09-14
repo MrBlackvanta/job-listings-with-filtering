@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { League_Spartan } from "next/font/google";
+import { siteUrl } from "@/app/site";
 import "./globals.css";
 
 const leagueSpartan = League_Spartan({
@@ -13,8 +14,6 @@ const name = "Job Listings";
 const title = `${name} | Find your next developer role`;
 const description =
   "Browse developer job listings and filter them by role, level, language and tool to find the openings that match your stack.";
-const siteUrl =
-  "https://job-listings-with-filtering.abdelrhman-ahmed8881.workers.dev";
 const shareCard = {
   url: "/opengraph-image.jpg",
   width: 1200,
